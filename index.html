@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VDO.Ninja - Hacker Feed</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #00ff00;
+      font-family: 'Share Tech Mono', monospace;
+      text-align: center;
+      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      animation: flicker 1.5s infinite alternate;
+    }
+
+    iframe {
+      width: 80%;
+      max-width: 960px;
+      height: 540px;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 10px #00ff00;
+      z-index: 2;
+    }
+
+    .scanlines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1),
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      z-index: 1;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🔒 VDO.Ninja Secure Hacker Feed</h1>
+
+  <!-- Replace "YourStreamID" below with your actual VDO.Ninja stream ID -->
+  <iframe 
+    src="https://vdo.ninja/?view=YourStreamID&autoplay&noaudio" 
+    allow="camera; microphone; autoplay" 
+    allowfullscreen>
+  </iframe>
+
+  <div class="scanlines"></div>
+</body>
+</html>
