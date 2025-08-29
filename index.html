@@ -29,12 +29,26 @@
     }
 
     iframe {
-      width: 80%;
-      max-width: 960px;
-      height: 540px;
       border: 2px solid #00ff00;
       box-shadow: 0 0 10px #00ff00;
       z-index: 2;
+    }
+
+    .main-stream {
+      width: 80%;
+      max-width: 960px;
+      height: 540px;
+    }
+
+    .chat-frame {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      height: 480px;
+      cursor: move;
+      z-index: 999;
+      background-color: black;
     }
 
     .scanlines {
@@ -64,13 +78,47 @@
 <body>
   <h1>🔒 VDO.Ninja Secure Hacker Feed</h1>
 
-  <!-- Replace "YourStreamID" below with your actual VDO.Ninja stream ID -->
+  <!-- Main Stream -->
   <iframe 
+    class="main-stream"
     src="https://vdo.ninja/?view=cvmGgXM" 
     allow="camera; microphone; autoplay" 
     allowfullscreen>
   </iframe>
 
+  <!-- Movable Chat -->
+  <iframe 
+    class="chat-frame" 
+    src="https://vdo.ninja/popout.html?id=YFwDBEvX&data=Ak0XAFxTBwsAARUgHAQcAgoCLiFMWVAgNgMtLSsdPVsNAwsAGh8RCAUJDQEET1YTGwkYTF1HDRUfPhcsJE1CSQkYQ0QVTU8UUl4QDU1QEQIHFgUDHQpFX0wQHRQVMQcMHBIVDUhOFyQQCwIAUEoc" 
+    allow="autoplay">
+  </iframe>
+
+  <!-- Scanline overlay -->
   <div class="scanlines"></div>
+
+  <!-- Drag Script -->
+  <script>
+    // Make the chat iframe draggable
+    const chat = document.querySelector('.chat-frame');
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    chat.addEventListener('mousedown', function(e) {
+      isDragging = true;
+      offsetX = e.clientX - chat.offsetLeft;
+      offsetY = e.clientY - chat.offsetTop;
+    });
+
+    document.addEventListener('mousemove', function(e) {
+      if (isDragging) {
+        chat.style.left = `${e.clientX - offsetX}px`;
+        chat.style.top = `${e.clientY - offsetY}px`;
+      }
+    });
+
+    document.addEventListener('mouseup', function() {
+      isDragging = false;
+    });
+  </script>
 </body>
 </html>
